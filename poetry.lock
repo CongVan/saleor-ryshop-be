@@ -51,7 +51,7 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-tests = ["pytest", "pytest-asyncio", "mypy (>=0.800)"]
+tests = ["mypy (>=0.800)", "pytest-asyncio", "pytest"]
 
 [[package]]
 name = "astroid"
@@ -191,8 +191,8 @@ python-versions = "*"
 soupsieve = ">=1.2"
 
 [package.extras]
-html5lib = ["html5lib"]
 lxml = ["lxml"]
+html5lib = ["html5lib"]
 
 [[package]]
 name = "beautifultable"
@@ -238,10 +238,10 @@ tomli = {version = ">=1.1.0", markers = "python_full_version < \"3.11.0a7\""}
 typing-extensions = {version = ">=3.10.0.0", markers = "python_version < \"3.10\""}
 
 [package.extras]
-colorama = ["colorama (>=0.4.3)"]
-d = ["aiohttp (>=3.7.4)"]
-jupyter = ["ipython (>=7.8.0)", "tokenize-rt (>=3.2.0)"]
 uvloop = ["uvloop (>=0.15.2)"]
+jupyter = ["tokenize-rt (>=3.2.0)", "ipython (>=7.8.0)"]
+d = ["aiohttp (>=3.7.4)"]
+colorama = ["colorama (>=0.4.3)"]
 
 [[package]]
 name = "boto3"
@@ -437,7 +437,7 @@ python-versions = "*"
 click = ">=4.0"
 
 [package.extras]
-dev = ["pytest (>=3.6)", "pytest-cov", "wheel", "coveralls"]
+dev = ["coveralls", "wheel", "pytest-cov", "pytest (>=3.6)"]
 
 [[package]]
 name = "click-repl"
@@ -518,8 +518,8 @@ tinycss2 = "*"
 webencodings = "*"
 
 [package.extras]
-doc = ["sphinx", "sphinx-rtd-theme"]
-test = ["pytest", "pytest-cov", "pytest-flake8", "pytest-isort", "coverage"]
+test = ["coverage", "pytest-isort", "pytest-flake8", "pytest-cov", "pytest"]
+doc = ["sphinx-rtd-theme", "sphinx"]
 
 [[package]]
 name = "deprecated"
@@ -533,7 +533,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 wrapt = ">=1.10,<2"
 
 [package.extras]
-dev = ["tox", "bump2version (<1)", "sphinx (<2)", "importlib-metadata (<3)", "importlib-resources (<4)", "configparser (<5)", "sphinxcontrib-websupport (<2)", "zipp (<2)", "PyTest (<5)", "PyTest-Cov (<2.6)", "pytest", "pytest-cov"]
+dev = ["pytest-cov", "pytest", "PyTest-Cov (<2.6)", "PyTest (<5)", "zipp (<2)", "sphinxcontrib-websupport (<2)", "configparser (<5)", "importlib-resources (<4)", "importlib-metadata (<3)", "sphinx (<2)", "bump2version (<1)", "tox"]
 
 [[package]]
 name = "dill"
@@ -633,10 +633,10 @@ python-versions = "*"
 typing-extensions = "*"
 
 [package.extras]
-dev = ["tox", "black", "django", "pytest", "pytest-django", "djangorestframework", "graphene-django"]
-maintainer = ["transifex-client", "zest.releaser", "django"]
+test = ["graphene-django", "djangorestframework", "pytest-cov", "pytest-django", "pytest"]
 pyuca = ["pyuca"]
-test = ["pytest", "pytest-django", "pytest-cov", "djangorestframework", "graphene-django"]
+maintainer = ["django", "zest.releaser", "transifex-client"]
+dev = ["graphene-django", "djangorestframework", "pytest-django", "pytest", "django", "black", "tox"]
 
 [[package]]
 name = "django-debug-toolbar"
@@ -821,26 +821,32 @@ Django = ">=2.2"
 google-cloud-storage = {version = ">=1.27.0", optional = true, markers = "extra == \"google\""}
 
 [package.extras]
-azure = ["azure-storage-blob (>=12.0.0)"]
-boto3 = ["boto3 (>=1.4.4)"]
-dropbox = ["dropbox (>=7.2.1)"]
-google = ["google-cloud-storage (>=1.27.0)"]
-libcloud = ["apache-libcloud"]
 sftp = ["paramiko"]
+libcloud = ["apache-libcloud"]
+google = ["google-cloud-storage (>=1.27.0)"]
+dropbox = ["dropbox (>=7.2.1)"]
+boto3 = ["boto3 (>=1.4.4)"]
+azure = ["azure-storage-blob (>=12.0.0)"]
 
 [[package]]
 name = "django-stubs"
-version = "1.8.0"
+version = "1.12.0"
 description = "Mypy stubs for Django"
 category = "dev"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 django = "*"
-django-stubs-ext = "*"
-mypy = ">=0.790"
+django-stubs-ext = ">=0.4.0"
+mypy = ">=0.930"
+tomli = "*"
+types-pytz = "*"
+types-PyYAML = "*"
 typing-extensions = "*"
+
+[package.extras]
+compatible-mypy = ["mypy (>=0.930,<0.970)"]
 
 [[package]]
 name = "django-stubs-ext"
@@ -959,8 +965,8 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-docs = ["furo (>=2021.8.17b43)", "sphinx (>=4.1)", "sphinx-autodoc-typehints (>=1.12)"]
-testing = ["covdefaults (>=1.2.0)", "coverage (>=4)", "pytest (>=4)", "pytest-cov", "pytest-timeout (>=1.4.2)"]
+testing = ["pytest-timeout (>=1.4.2)", "pytest-cov", "pytest (>=4)", "coverage (>=4)", "covdefaults (>=1.2.0)"]
+docs = ["sphinx-autodoc-typehints (>=1.12)", "sphinx (>=4.1)", "furo (>=2021.8.17b43)"]
 
 [[package]]
 name = "flake8"
@@ -977,7 +983,7 @@ pyflakes = ">=2.4.0,<2.5.0"
 
 [[package]]
 name = "fonttools"
-version = "4.34.4"
+version = "4.35.0"
 description = "Tools to manipulate font files"
 category = "main"
 optional = false
@@ -989,18 +995,18 @@ brotlicffi = {version = ">=0.8.0", optional = true, markers = "platform_python_i
 zopfli = {version = ">=0.1.4", optional = true, markers = "extra == \"woff\""}
 
 [package.extras]
-all = ["fs (>=2.2.0,<3)", "lxml (>=4.0,<5)", "zopfli (>=0.1.4)", "lz4 (>=1.7.4.2)", "matplotlib", "sympy", "skia-pathops (>=0.5.0)", "uharfbuzz (>=0.23.0)", "brotlicffi (>=0.8.0)", "scipy", "brotli (>=1.0.1)", "munkres", "unicodedata2 (>=14.0.0)", "xattr"]
-graphite = ["lz4 (>=1.7.4.2)"]
-interpolatable = ["scipy", "munkres"]
-lxml = ["lxml (>=4.0,<5)"]
-pathops = ["skia-pathops (>=0.5.0)"]
-plot = ["matplotlib"]
-repacker = ["uharfbuzz (>=0.23.0)"]
-symfont = ["sympy"]
-type1 = ["xattr"]
-ufo = ["fs (>=2.2.0,<3)"]
+woff = ["brotli (>=1.0.1)", "brotlicffi (>=0.8.0)", "zopfli (>=0.1.4)"]
 unicode = ["unicodedata2 (>=14.0.0)"]
-woff = ["zopfli (>=0.1.4)", "brotlicffi (>=0.8.0)", "brotli (>=1.0.1)"]
+ufo = ["fs (>=2.2.0,<3)"]
+type1 = ["xattr"]
+symfont = ["sympy"]
+repacker = ["uharfbuzz (>=0.23.0)"]
+plot = ["matplotlib"]
+pathops = ["skia-pathops (>=0.5.0)"]
+lxml = ["lxml (>=4.0,<5)"]
+interpolatable = ["munkres", "scipy"]
+graphite = ["lz4 (>=1.7.4.2)"]
+all = ["xattr", "unicodedata2 (>=14.0.0)", "munkres", "brotli (>=1.0.1)", "scipy", "brotlicffi (>=0.8.0)", "uharfbuzz (>=0.23.0)", "skia-pathops (>=0.5.0)", "sympy", "matplotlib", "lz4 (>=1.7.4.2)", "zopfli (>=0.1.4)", "lxml (>=4.0,<5)", "fs (>=2.2.0,<3)"]
 
 [[package]]
 name = "freezegun"
@@ -1047,10 +1053,10 @@ rsa = {version = ">=3.1.4,<5", markers = "python_version >= \"3.6\""}
 six = ">=1.9.0"
 
 [package.extras]
-aiohttp = ["requests (>=2.20.0,<3.0.0dev)", "aiohttp (>=3.6.2,<4.0.0dev)"]
-enterprise_cert = ["cryptography (==36.0.2)", "pyopenssl (==22.0.0)"]
-pyopenssl = ["pyopenssl (>=20.0.0)"]
 reauth = ["pyu2f (>=0.1.5)"]
+pyopenssl = ["pyopenssl (>=20.0.0)"]
+enterprise_cert = ["pyopenssl (==22.0.0)", "cryptography (==36.0.2)"]
+aiohttp = ["aiohttp (>=3.6.2,<4.0.0dev)", "requests (>=2.20.0,<3.0.0dev)"]
 
 [[package]]
 name = "google-cloud-core"
@@ -1150,8 +1156,8 @@ python-versions = ">= 3.6"
 google-crc32c = ">=1.0,<2.0dev"
 
 [package.extras]
-aiohttp = ["aiohttp (>=3.6.2,<4.0.0dev)"]
 requests = ["requests (>=2.18.0,<3.0.0dev)"]
+aiohttp = ["aiohttp (>=3.6.2,<4.0.0dev)"]
 
 [[package]]
 name = "googleapis-common-protos"
@@ -1183,9 +1189,9 @@ graphql-relay = ">=2,<3"
 six = ">=1.10.0,<2"
 
 [package.extras]
-django = ["graphene-django"]
+test = ["iso8601", "pytz", "mock", "six", "promise", "coveralls", "snapshottest", "fastdiff (==0.2.0)", "pytest-mock", "pytest-cov", "pytest-benchmark", "pytest"]
 sqlalchemy = ["graphene-sqlalchemy"]
-test = ["pytest", "pytest-benchmark", "pytest-cov", "pytest-mock", "fastdiff (==0.2.0)", "snapshottest", "coveralls", "promise", "six", "mock", "pytz", "iso8601"]
+django = ["graphene-django"]
 
 [[package]]
 name = "graphene-django"
@@ -1205,9 +1211,9 @@ six = ">=1.10.0"
 text-unidecode = "*"
 
 [package.extras]
-dev = ["black (==19.10b0)", "flake8 (==3.7.9)", "flake8-black (==0.1.1)", "flake8-bugbear (==20.1.4)", "pytest (>=3.6.3)", "pytest-cov", "coveralls", "mock", "pytz", "pytest-django (>=3.3.2)", "djangorestframework (>=3.6.3)", "django-filter (<2)", "django-filter (>=2)"]
+test = ["django-filter (>=2)", "django-filter (<2)", "djangorestframework (>=3.6.3)", "pytest-django (>=3.3.2)", "pytz", "mock", "coveralls", "pytest-cov", "pytest (>=3.6.3)"]
 rest_framework = ["djangorestframework (>=3.6.3)"]
-test = ["pytest (>=3.6.3)", "pytest-cov", "coveralls", "mock", "pytz", "pytest-django (>=3.3.2)", "djangorestframework (>=3.6.3)", "django-filter (<2)", "django-filter (>=2)"]
+dev = ["django-filter (>=2)", "django-filter (<2)", "djangorestframework (>=3.6.3)", "pytest-django (>=3.3.2)", "pytz", "mock", "coveralls", "pytest-cov", "pytest (>=3.6.3)", "flake8-bugbear (==20.1.4)", "flake8-black (==0.1.1)", "flake8 (==3.7.9)", "black (==19.10b0)"]
 
 [[package]]
 name = "graphql-core"
@@ -1223,8 +1229,8 @@ rx = ">=1.6,<2"
 six = ">=1.10.0"
 
 [package.extras]
+test = ["pytest-mock (==2.0.0)", "pytest-benchmark (==3.2.3)", "gevent (==1.5.0)", "cython (==0.29.17)", "coveralls (==1.11.1)", "pytest-cov (==2.8.1)", "pytest-django (==3.9.0)", "pytest (==4.6.10)", "pyannotate (==1.2.0)", "six (==1.14.0)"]
 gevent = ["gevent (>=1.1)"]
-test = ["six (==1.14.0)", "pyannotate (==1.2.0)", "pytest (==4.6.10)", "pytest-django (==3.9.0)", "pytest-cov (==2.8.1)", "coveralls (==1.11.1)", "cython (==0.29.17)", "gevent (==1.5.0)", "pytest-benchmark (==3.2.3)", "pytest-mock (==2.0.0)"]
 
 [[package]]
 name = "graphql-relay"
@@ -1336,10 +1342,10 @@ six = ">=1.9"
 webencodings = "*"
 
 [package.extras]
-all = ["genshi", "chardet (>=2.2)", "lxml"]
-chardet = ["chardet (>=2.2)"]
-genshi = ["genshi"]
 lxml = ["lxml"]
+genshi = ["genshi"]
+chardet = ["chardet (>=2.2)"]
+all = ["lxml", "chardet (>=2.2)", "genshi"]
 
 [[package]]
 name = "httptools"
@@ -1415,10 +1421,10 @@ optional = false
 python-versions = ">=3.6.1,<4.0"
 
 [package.extras]
-pipfile_deprecated_finder = ["pipreqs", "requirementslib"]
-requirements_deprecated_finder = ["pipreqs", "pip-api"]
-colors = ["colorama (>=0.4.3,<0.5.0)"]
 plugins = ["setuptools"]
+colors = ["colorama (>=0.4.3,<0.5.0)"]
+requirements_deprecated_finder = ["pip-api", "pipreqs"]
+pipfile_deprecated_finder = ["requirementslib", "pipreqs"]
 
 [[package]]
 name = "jaeger-client"
@@ -1483,20 +1489,20 @@ amqp = ">=5.0.9,<6.0.0"
 vine = "*"
 
 [package.extras]
-azureservicebus = ["azure-servicebus (>=7.0.0)"]
-azurestoragequeues = ["azure-storage-queue"]
-consul = ["python-consul (>=0.6.0)"]
-librabbitmq = ["librabbitmq (>=2.0.0)"]
-mongodb = ["pymongo (>=3.3.0,<3.12.1)"]
-msgpack = ["msgpack"]
-pyro = ["pyro4"]
-qpid = ["qpid-python (>=0.26)", "qpid-tools (>=0.26)"]
-redis = ["redis (>=3.4.1,!=4.0.0,!=4.0.1)"]
-slmq = ["softlayer-messaging (>=1.0.3)"]
-sqlalchemy = ["sqlalchemy"]
-sqs = ["boto3 (>=1.9.12)", "pycurl (>=7.44.1,<7.45.0)", "urllib3 (>=1.26.7)"]
-yaml = ["PyYAML (>=3.10)"]
 zookeeper = ["kazoo (>=1.3.1)"]
+yaml = ["PyYAML (>=3.10)"]
+sqs = ["urllib3 (>=1.26.7)", "pycurl (>=7.44.1,<7.45.0)", "boto3 (>=1.9.12)"]
+sqlalchemy = ["sqlalchemy"]
+slmq = ["softlayer-messaging (>=1.0.3)"]
+redis = ["redis (>=3.4.1,!=4.0.0,!=4.0.1)"]
+qpid = ["qpid-tools (>=0.26)", "qpid-python (>=0.26)"]
+pyro = ["pyro4"]
+msgpack = ["msgpack"]
+mongodb = ["pymongo (>=3.3.0,<3.12.1)"]
+librabbitmq = ["librabbitmq (>=2.0.0)"]
+consul = ["python-consul (>=0.6.0)"]
+azurestoragequeues = ["azure-storage-queue"]
+azureservicebus = ["azure-servicebus (>=7.0.0)"]
 
 [[package]]
 name = "lazy-object-proxy"
@@ -1594,8 +1600,8 @@ optional = false
 python-versions = "*"
 
 [package.extras]
-develop = ["pytest (>=4.6)", "pycodestyle", "pytest-cov", "codecov", "wheel"]
 tests = ["pytest (>=4.6)"]
+develop = ["wheel", "codecov", "pytest-cov", "pycodestyle", "pytest (>=4.6)"]
 
 [[package]]
 name = "msrest"
@@ -1613,7 +1619,7 @@ requests = ">=2.16,<3.0"
 requests-oauthlib = ">=0.5.0"
 
 [package.extras]
-async = ["aiodns", "aiohttp (>=3.0)"]
+async = ["aiohttp (>=3.0)", "aiodns"]
 
 [[package]]
 name = "multidict"
@@ -1776,8 +1782,8 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-dev = ["pre-commit", "tox"]
-testing = ["pytest", "pytest-benchmark"]
+testing = ["pytest-benchmark", "pytest"]
+dev = ["tox", "pre-commit"]
 
 [[package]]
 name = "posuto"
@@ -1946,8 +1952,8 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-doc = ["sphinx", "sphinx-rtd-theme"]
-test = ["pytest", "pytest-xdist", "pytest-flake8", "pytest-isort", "pytest-cov", "coverage", "pillow"]
+test = ["pillow", "coverage", "pytest-cov", "pytest-isort", "pytest-flake8", "pytest-xdist", "pytest"]
+doc = ["sphinx-rtd-theme", "sphinx"]
 
 [[package]]
 name = "pyflakes"
@@ -1966,10 +1972,10 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
+tests = ["coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)"]
+docs = ["zope.interface", "sphinx-rtd-theme", "sphinx"]
+dev = ["pre-commit", "mypy", "coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)", "cryptography (>=3.3.1)", "zope.interface", "sphinx-rtd-theme", "sphinx"]
 crypto = ["cryptography (>=3.3.1)"]
-dev = ["sphinx", "sphinx-rtd-theme", "zope.interface", "cryptography (>=3.3.1)", "pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)", "mypy", "pre-commit"]
-docs = ["sphinx", "sphinx-rtd-theme", "zope.interface"]
-tests = ["pytest (>=6.0.0,<7.0.0)", "coverage[toml] (==5.0.4)"]
 
 [[package]]
 name = "pylint"
@@ -2020,8 +2026,8 @@ pylint = ">=2.0,<3"
 pylint-plugin-utils = ">=0.7"
 
 [package.extras]
-for_tests = ["django-tables2", "factory-boy", "coverage", "pytest", "wheel", "django-tastypie", "pylint (>=2.13)"]
 with_django = ["django"]
+for_tests = ["pylint (>=2.13)", "django-tastypie", "wheel", "pytest", "coverage", "factory-boy", "django-tables2"]
 
 [[package]]
 name = "pylint-plugin-utils"
@@ -2062,8 +2068,8 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-doc = ["sphinx", "sphinx-rtd-theme"]
-test = ["pytest", "pytest-cov", "pytest-flake8", "pytest-isort", "coverage"]
+test = ["coverage", "pytest-isort", "pytest-flake8", "pytest-cov", "pytest"]
+doc = ["sphinx-rtd-theme", "sphinx"]
 
 [[package]]
 name = "pytest"
@@ -2110,7 +2116,7 @@ coverage = {version = ">=5.2.1", extras = ["toml"]}
 pytest = ">=4.6"
 
 [package.extras]
-testing = ["fields", "hunter", "process-tests", "six", "pytest-xdist", "virtualenv"]
+testing = ["virtualenv", "pytest-xdist", "six", "process-tests", "hunter", "fields"]
 
 [[package]]
 name = "pytest-django"
@@ -2349,8 +2355,8 @@ deprecated = ">=1.2.3"
 packaging = ">=20.4"
 
 [package.extras]
+ocsp = ["requests (>=2.26.0)", "pyopenssl (==20.0.1)", "cryptography (>=36.0.1)"]
 hiredis = ["hiredis (>=1.0.0)"]
-ocsp = ["cryptography (>=36.0.1)", "pyopenssl (==20.0.1)", "requests (>=2.26.0)"]
 
 [[package]]
 name = "requests"
@@ -2443,22 +2449,22 @@ certifi = "*"
 urllib3 = ">=1.10.0"
 
 [package.extras]
-aiohttp = ["aiohttp (>=3.5)"]
-beam = ["apache-beam (>=2.12)"]
-bottle = ["bottle (>=0.12.13)"]
-celery = ["celery (>=3)"]
-chalice = ["chalice (>=1.16.0)"]
-django = ["django (>=1.8)"]
-falcon = ["falcon (>=1.4)"]
-flask = ["flask (>=0.11)", "blinker (>=1.1)"]
-httpx = ["httpx (>=0.16.0)"]
-pure_eval = ["pure-eval", "executing", "asttokens"]
-pyspark = ["pyspark (>=2.4.4)"]
-quart = ["quart (>=0.16.1)", "blinker (>=1.1)"]
-rq = ["rq (>=0.6)"]
-sanic = ["sanic (>=0.8)"]
-sqlalchemy = ["sqlalchemy (>=1.2)"]
 tornado = ["tornado (>=5)"]
+sqlalchemy = ["sqlalchemy (>=1.2)"]
+sanic = ["sanic (>=0.8)"]
+rq = ["rq (>=0.6)"]
+quart = ["blinker (>=1.1)", "quart (>=0.16.1)"]
+pyspark = ["pyspark (>=2.4.4)"]
+pure_eval = ["asttokens", "executing", "pure-eval"]
+httpx = ["httpx (>=0.16.0)"]
+flask = ["blinker (>=1.1)", "flask (>=0.11)"]
+falcon = ["falcon (>=1.4)"]
+django = ["django (>=1.8)"]
+chalice = ["chalice (>=1.16.0)"]
+celery = ["celery (>=3)"]
+bottle = ["bottle (>=0.12.13)"]
+beam = ["apache-beam (>=2.12)"]
+aiohttp = ["aiohttp (>=3.5)"]
 
 [[package]]
 name = "singledispatch"
@@ -2600,8 +2606,8 @@ python-versions = ">=3.6"
 webencodings = ">=0.4"
 
 [package.extras]
-doc = ["sphinx", "sphinx-rtd-theme"]
-test = ["pytest", "pytest-cov", "pytest-flake8", "pytest-isort", "coverage"]
+test = ["coverage", "pytest-isort", "pytest-flake8", "pytest-cov", "pytest"]
+doc = ["sphinx-rtd-theme", "sphinx"]
 
 [[package]]
 name = "toml"
@@ -2698,6 +2704,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "types-pyyaml"
+version = "6.0.11"
+description = "Typing stubs for PyYAML"
+category = "dev"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "types-redis"
 version = "4.3.3"
 description = "Typing stubs for redis"
@@ -2757,9 +2771,9 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, <4"
 
 [package.extras]
-brotli = ["brotlicffi (>=0.8.0)", "brotli (>=1.0.9)", "brotlipy (>=0.6.0)"]
-secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
+secure = ["ipaddress", "certifi", "idna (>=2.0.0)", "cryptography (>=1.3.4)", "pyOpenSSL (>=0.14)"]
+brotli = ["brotlipy (>=0.6.0)", "brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
 
 [[package]]
 name = "uvicorn"
@@ -2939,8 +2953,8 @@ test = ["pytest"]
 
 [metadata]
 lock-version = "1.1"
-  python-versions = "~3.9"
-content-hash = "b20d10c380db091a4ccd63599d01cb68dd1f1e354e097ba8672bac0610afed68"
+python-versions = "~3.9"
+content-hash = "04dd10de78604cb4ef9c953756c6a24e2b8e5d3338f45991fe9c7161dfa0832f"
 
 [metadata.files]
 adyen = [
@@ -3431,8 +3445,8 @@ django-storages = [
     {file = "django_storages-1.12.3-py3-none-any.whl", hash = "sha256:204a99f218b747c46edbfeeb1310d357f83f90fa6a6024d8d0a3f422570cee84"},
 ]
 django-stubs = [
-    {file = "django-stubs-1.8.0.tar.gz", hash = "sha256:717967d7fee0a6af0746724a0be80d72831a982a40fa8f245a6a46f4cafd157b"},
-    {file = "django_stubs-1.8.0-py3-none-any.whl", hash = "sha256:bde9e44e3c4574c2454e74a3e607cc3bc23b0441bb7d1312cd677d5e30984b74"},
+    {file = "django-stubs-1.12.0.tar.gz", hash = "sha256:ea8b35d0da49f7b2ee99a79125f1943e033431dd114726d6643cc35de619230e"},
+    {file = "django_stubs-1.12.0-py3-none-any.whl", hash = "sha256:0dff8ec0ba3abe046450b3d8a29ce9e72629893d2c1ef679189cc2bfdb6d2f64"},
 ]
 django-stubs-ext = [
     {file = "django-stubs-ext-0.5.0.tar.gz", hash = "sha256:9bd7418376ab00b7f88d6d56be9fece85bfa0c7c348ac621155fa4d7a91146f2"},
@@ -3478,8 +3492,8 @@ flake8 = [
     {file = "flake8-4.0.1.tar.gz", hash = "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d"},
 ]
 fonttools = [
-    {file = "fonttools-4.34.4-py3-none-any.whl", hash = "sha256:d73f25b283cd8033367451122aa868a23de0734757a01984e4b30b18b9050c72"},
-    {file = "fonttools-4.34.4.zip", hash = "sha256:9a1c52488045cd6c6491fd07711a380f932466e317cb8e016fc4e99dc7eac2f0"},
+    {file = "fonttools-4.35.0-py3-none-any.whl", hash = "sha256:0292e391c1b46f2308bda20ea2a2dd5253725e7e2d3a1928b631338eb318eb22"},
+    {file = "fonttools-4.35.0.zip", hash = "sha256:1cfb335c0abdeb6231191dc4f9d7ce1173e2ac94b335c617e045b96f9c974aea"},
 ]
 freezegun = [
     {file = "freezegun-1.2.1-py3-none-any.whl", hash = "sha256:15103a67dfa868ad809a8f508146e396be2995172d25f927e48ce51c0bf5cb09"},
@@ -4507,6 +4521,10 @@ types-python-dateutil = [
 types-pytz = [
     {file = "types-pytz-2021.3.8.tar.gz", hash = "sha256:41253a3a2bf028b6a3f17b58749a692d955af0f74e975de94f6f4d2d3cd01dbd"},
     {file = "types_pytz-2021.3.8-py3-none-any.whl", hash = "sha256:aef4a917ab28c585d3f474bfce4f4b44b91e95d9d47d4de29dd845e0db8e3910"},
+]
+types-pyyaml = [
+    {file = "types-PyYAML-6.0.11.tar.gz", hash = "sha256:7f7da2fd11e9bc1e5e9eb3ea1be84f4849747017a59fc2eee0ea34ed1147c2e0"},
+    {file = "types_PyYAML-6.0.11-py3-none-any.whl", hash = "sha256:8f890028123607379c63550179ddaec4517dc751f4c527a52bb61934bf495989"},
 ]
 types-redis = [
     {file = "types-redis-4.3.3.tar.gz", hash = "sha256:d3ae29aff7999361c9f979498bd2e257f932f6291b876aac0b44b5f00106c6e1"},
